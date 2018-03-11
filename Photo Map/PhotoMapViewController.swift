@@ -15,7 +15,7 @@ import MessageUI
 class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, LocationsViewControllerDelegate {
     
     func locationsPickedLocation(controller: LocationsViewController, latitude: NSNumber, longitude: NSNumber) {
-        
+        self.navigationController?.popViewController(animated: true)
     }
     
 //    var mapView: MKMapView!
