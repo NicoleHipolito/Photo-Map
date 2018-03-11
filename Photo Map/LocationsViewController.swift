@@ -8,12 +8,18 @@
 
 import UIKit
 
+// Protocol definition - top of LocationsViewController.swift
+protocol LocationsViewControllerDelegate : class {
+    func locationsPickedLocation(controller: LocationsViewController, latitude: NSNumber, longitude: NSNumber)
+}
+
 class LocationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     // TODO: Fill in actual CLIENT_ID and CLIENT_SECRET
-    let CLIENT_ID = "CLIENT_ID GOES HERE"
-    let CLIENT_SECRET = "CLIENT_SECRET GOES HERE"
-
+    let CLIENT_ID = "NAHDUPPBJLXD0M3HWDFUFE5DGABDJK11Q4HOYT3SQJQHEWZT"
+    let CLIENT_SECRET = "NNNDTJBMOB2NMAALAUH5QV1JHRWZ1C5X1XGURP2IXGSJKID3"
+    
+    weak var delegate : LocationsViewControllerDelegate!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
 
@@ -53,7 +59,9 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
 
         let latString = "\(lat)"
         let lngString = "\(lng)"
-
+        
+        delegate.locationsPickedLocation(controller: self, latitude: lat, longitude: lng)
+        
         print(latString + " " + lngString)
     }
     
@@ -95,5 +103,11 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
         });
         task.resume()
     }
-
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+//        if(segue.identifier == ")
+        // Pass the selected object to the new view controller.
+    }
+    
 }
